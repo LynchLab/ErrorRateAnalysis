@@ -840,3 +840,4 @@ if __name__ == '__main__':
 			minutes = int(total_time_all // 60)
 			seconds = int(total_time_all % 60)
 			print(f"Total time for all {total_files+1} files : {minutes} minute(s) {seconds} second(s)")			
+

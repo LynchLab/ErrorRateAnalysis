@@ -237,3 +237,4 @@ if __name__ == '__main__':
 		sys.exit(2)
 
 	codon_matrix(input_file, gene_file, protein_file, tt)
+

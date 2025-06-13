@@ -119,3 +119,4 @@ if __name__ == '__main__':
 		print(f"Unrecognized arguments: {remainder}. These were ignored.")
 	
 	check_internal_homology(proteome_input, gene_input)
+

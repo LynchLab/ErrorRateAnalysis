@@ -121,3 +121,4 @@ if __name__ == '__main__':
 
 	format_matrix(input_file, remove_artifacts)
 
+

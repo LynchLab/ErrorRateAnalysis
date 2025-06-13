@@ -150,3 +150,4 @@ if __name__ == '__main__':
         sys.exit(2)
 
     generate_custom_database(gen_xlsx, proteome_file, gene_file)
+

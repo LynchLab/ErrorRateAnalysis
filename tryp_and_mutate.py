@@ -167,3 +167,4 @@ if __name__ == '__main__':
 		print(f"Unrecognized arguments: {remainder}. These were ignored.")
 
 	mutate(proteome_input,miss,muts,gene_input)
+

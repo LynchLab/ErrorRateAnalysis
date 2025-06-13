@@ -3,18 +3,18 @@
 Create the environment with either conda or mamba:
 
 ```
-conda create -n sera python=3.12 biopython numpy pandas openpyxl git requests
+conda create -n era python=3.12 biopython numpy pandas openpyxl git requests
 ```
 ```
-mamba create -n sera python=3.12 biopython numpy pandas openpyxl git requests
+mamba create -n era python=3.12 biopython numpy pandas openpyxl git requests
 ```
 ```
-conda activate sera
+conda activate era
 ```
 Clone the repository
 ```
-git clone https://github.com/stikeleather/ErrorRateAnalysis-public.git
-cd ErrorRateAnalysis-public
+git clone https://github.com/LynchLab/ErrorRateAnalysis.git
+cd ErrorRateAnalysis
 ```
 
 1) Parse an annotation file into proteome and gene files. When selecting a --parse argument, make sure to use a feature that contains a unique ID. Locus tags usually work, but annotation files vary.

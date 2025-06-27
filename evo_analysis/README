@@ -1,0 +1,45 @@
+################### identify_pref_codons #########################
+The scripts in this directory are intended for the identification of preferred codons for amino acids based on relative
+selection coefficients among synonymous codons estimated from observed codon frequencies based on an extended Li-Bulmer
+model with 4 alleles. 
+
+This analysis begins with the codon-based alignments of genes annotated in the E. coli wt strains against a collection of
+E. coli isolates. These alignments have not been included in the directory but can be generated based on a supplementary table of protein accessions of orthologous proteins across NCBI genome assemblies used in the analysis.
+
+The steps involved in the analysis are as follows:
+1. codonfreq_sites_msa.py : generate tables of frequencies of 64 codons at each site of a gene in the corresponding alignment file. The output (gene_site_codonfreq) is a directory of tables - 1 for each gene. This output has not been included in the "output" directory, and needs to be generated based on the codon alignments provided by the user.
+
+2. gene_cons_codon_freqs.R : get counts of different codons in a gene from positions that are conserved for a codon across isolates. Input dir - gene_site_codonfreq, Output file - gene_cons_codon_freqs.csv
+
+3a. tab_codonfreq_by_codongroup_top25.R : get codon freqs from highly-expressed genes and arrange in matrix form by codon groups. Input - gene_cons_codon_freqs.csv, Output - codongroup_codonfreq_top25.csv
+
+3b. tab_codonfreq_by_codongroup_all.R : get codon freqs from all genes and arrange in matrix form by codon groups. Input - gene_cons_codon_freqs.csv, Output - codongroup_codonfreq_all.csv
+
+4. est_sel_codonfreq_LB4.wls : estimate selection coefficients for 3 nucleotides - C,G,T relative to A within each codongroup( defined by the first two nucleotides of a codon) using Li-Bulmer model. This is a wolfram script and requires a subscription. It uses another mathematica script internally that supplies the required functions - functions_codonfreq_to_sel_LB4.wls. Arguments are supplied from the command line. Input - codongroup_codonfreq_*.csv, Output - codongroup_sel_*.csv
+
+5. recalc_sel_codon_syn.R - make a table of selection coefficients on synonymous codons relative to preferred codon in each codon group. Arguments are supplied from the command line. Input - (codongroup_sel_*.csv, codongroup_codonfreq_*.csv), Output - codon_sel_*.csv
+
+6. identify_pref_codon_by_sel.R : identify preferred codons for amino acids with multiple codons based on estimated selection coefficients among synonymous codons. Input - codon_sel_*.csv, Output - pref_codons_*.csv
+################################################################
+
+########## Akashi's test of translation accuracy #########################
+This directory contains scripts to perform Akashi's test of translation accuracy of synonymous codons. The analysis is done in the following two steps.
+1. count_cons_var_sites_by_codon.py : count number of conserved / variant sites for each synonymous codon of each amino acid in each MSA. The functions used internally are supplied from the script - functions.py. Input - directory of codon-based alignments of genes, Output - gene_codon_cons_var_aa_sites.csv.
+
+2. Akashis_test_Mantel_Haenszel_statistic.R : perform Akashi's test of translation accuracy of preferred codons using Mantel-Haenszel statistic. The input list of preferred codons must be supplied from the command line. It generates 2x2 contingency tables using counts from gene_codon_cons_var_aa_sites.csv. The test results are printed on the STDOUT. This output has been saved under Akashis_test/testlog/
+##############################################################
+
+######################## others ################################
+1. gene_avg_freq_pref_codons.R : make a table of average relative frequency of preferred codons among synonymous codons across genes. It generates the data plotted in Figure 3A. Input list of preferred codons and corresponding output file path needs to be supplied from the command line. 
+
+2. codon_error_rates_by_expr.R : make multiple estimates of codon error rates using data from proteins at different abundance levels. It generates the data plotted in Figure 4C.
+
+################### plotting ###################################
+## inputs for the plotting scripts in this directory. The output plot file path must also to be supplied from the command line.
+1. plot_figure3A.R : gene_avg_freq_pref_codons_*.csv
+2. plot_figure3B.R : pref_codons_*.csv
+3. plot_figure4A.R :
+4. plot_figure4B.R :
+5. plot_figure4C.R : pref_codons_*.csv
+6. plot_figureS8.R : 
+7. plot_figureS10.R: Akashis_test/testlog/ 

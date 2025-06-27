@@ -1,0 +1,7 @@
+Time: 2025-06-09 21:04:41
+            Input: data/gene_codon_cons_var_aa_sites.csv
+            Preferred codons: data/pref_codons_SL87.csv
+# entries = 14324
+# preferred codons at conserved sites = 29563/73716 (40.10)
+# preferred codons at variable sites = 2236/5523 (40.49)
+MH statistic for Akashi's test: WMH = 1.02, X2 = 0.46, P = 0.496502481657363
